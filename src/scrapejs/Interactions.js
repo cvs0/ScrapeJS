@@ -20,14 +20,6 @@ class WebScraperInteractions {
     await page.close();
   }
 
-  async clickAndHold(url, selector, duration) {
-    const page = await this.browser.newPage();
-    await page.goto(url);
-    await page.waitForSelector(selector);
-    await page.click(selector, { button: 'left', delay: duration });
-    await page.close();
-  }
-
   async dragAndDrop(url, sourceSelector, targetSelector) {
     const page = await this.browser.newPage();
     await page.goto(url);
@@ -61,6 +53,21 @@ class WebScraperInteractions {
     await page.evaluate((scrollAmount) => {
       window.scrollBy(0, scrollAmount);
     }, scrollAmount);
+    await page.close();
+  }
+  
+  async clickElement(url, selector) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    await page.click(selector);
+    await page.close();
+  }
+
+  async clickAndHold(url, selector, duration) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    await page.waitForSelector(selector);
+    await page.click(selector, { button: 'left', delay: duration });
     await page.close();
   }
 }
