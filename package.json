@@ -1,0 +1,30 @@
+{
+  "name": "scrapejs",
+  "version": "1.0.0",
+  "description": "A NodeJS scraping library.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvs0/scrapejs.git"
+  },
+  "keywords": [
+    "scrape",
+    "web",
+    "scraper",
+    "bot",
+    "puppeteer",
+    "chrome"
+  ],
+  "author": "cvs0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvs0/scrapejs/issues"
+  },
+  "homepage": "https://github.com/cvs0/scrapejs#readme",
+  "dependencies": {
+    "puppeteer": "^21.5.0"
+  }
+}
