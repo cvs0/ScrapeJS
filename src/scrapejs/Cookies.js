@@ -63,6 +63,39 @@ class WebScraperCookies {
     }
     await page.close();
   }
+
+  async getAllCookies() {
+    const page = await this.browser.newPage();
+    const cookies = await page.cookies();
+    await page.close();
+    return cookies;
+  }
+  
+  async getCookiesByPath(url, path) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    const cookies = (await page.cookies()).filter((cookie) => cookie.path === path);
+    await page.close();
+    return cookies;
+  }
+  
+  async deleteCookiesByPath(url, path) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    const cookies = (await page.cookies()).filter((cookie) => cookie.path === path);
+    for (const cookie of cookies) {
+      await page.deleteCookie({ name: cookie.name, path: cookie.path });
+    }
+    await page.close();
+  }
+
+  async getAllCookiesForDomain(domain) {
+    const page = await this.browser.newPage();
+    const cookies = (await page.cookies()).filter((cookie) => cookie.domain === domain);
+    await page.close();
+    return cookies;
+  }
+  
 }
   
 module.exports = WebScraperCookies;

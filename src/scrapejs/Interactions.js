@@ -70,7 +70,36 @@ class WebScraperInteractions {
     await page.click(selector, { button: 'left', delay: duration });
     await page.close();
   }
+
+  async selectElementsByText(url, text) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    const elements = await page.$x(`//*[contains(text(), "${text}")]`);
+    await page.close();
+    return elements;
+  }
+  
+  async rightClickElement(url, selector) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    await page.click(selector, { button: 'right' });
+    await page.close();
+  }
+
+  async evaluateOnPage(url, script) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    const result = await page.evaluate(script);
+    await page.close();
+    return result;
+  }
+  
+  async doubleClickElement(url, selector) {
+    const page = await this.browser.newPage();
+    await page.goto(url);
+    await page.click(selector, { clickCount: 2 });
+    await page.close();
+  }
 }
   
 module.exports = WebScraperInteractions;
-  
